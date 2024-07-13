@@ -11,6 +11,6 @@
 
 2. Go to the `conf` folder and complete the `base.conf` configuration
 
-2. Execute `crhsv-detail.exe` to refresh the `conf/detail.conf` configuration
+2. Execute `rrhsv-detail.exe` to refresh the `conf/detail.conf` configuration
 
-3. According to `conf/detail.conf`, complete the `conf/release.conf` configuration and execute `crhsv-release.exe` to complete the unbinding
+3. According to `conf/detail.conf`, complete the `conf/release.conf` configuration and execute `rrhsv-release.exe` to complete the unbinding

@@ -1,7 +1,7 @@
-module shahow.top/crhsv-release
+module shahow.top/rrhsv-release
 
 go 1.22.5
 
-replace shahow.top/crhsv-core => ../core
+replace shahow.top/rrhsv-core => ../core
 
-require shahow.top/crhsv-core v0.0.0-00010101000000-000000000000
+require shahow.top/rrhsv-core v0.0.0-00010101000000-000000000000

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	core "shahow.top/crhsv-core"
+	core "shahow.top/rrhsv-core"
 )
 
 func main() {

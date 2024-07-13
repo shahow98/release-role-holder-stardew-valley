@@ -13,7 +13,7 @@
 
 2. 进入`conf`文件夹,完成`base.conf`配置
 
-2. 执行crhsv-detail.exe,刷新`conf/detail.conf`配置
+2. 执行rrhsv-detail.exe,刷新`conf/detail.conf`配置
 
-3. 根据`conf/detail.conf`,完成`conf/release.conf`配置,执行crhsv-release.exe,完成解绑
+3. 根据`conf/detail.conf`,完成`conf/release.conf`配置,执行rrhsv-release.exe,完成解绑
 
