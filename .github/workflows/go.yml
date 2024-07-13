@@ -1,4 +1,5 @@
-# This workflow will build a golang project
+# This workflow will build golang projects in detail and release folders using build.ps1,
+# and publish a zip file containing detail.exe, release.exe, and conf folder as release assets.
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
 name: Go
@@ -10,7 +11,6 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
     runs-on: windows-latest
     steps:
@@ -24,12 +24,18 @@ jobs:
     - name: Run build detail
       run: |
         cd detail
-        go build -o ../
+        go build -o ../detail.exe
 
     - name: Run build release
       run: |
         cd release
-        go build -o ../
+        go build -o ../release.exe
+
+    - name: Verify files
+      run: |
+        if (Test-Path -Path detail.exe) { Write-Host "detail.exe exists" } else { Write-Error "detail.exe not found" }
+        if (Test-Path -Path release.exe) { Write-Host "release.exe exists" } else { Write-Error "release.exe not found" }
+        if (Test-Path -Path conf) { Write-Host "conf folder exists" } else { Write-Error "conf folder not found" }
 
     - name: Zip the artifacts
       run: |
@@ -55,6 +61,7 @@ jobs:
         path: ./
 
     - name: Create Release
+      id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
