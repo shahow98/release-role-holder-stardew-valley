@@ -9,7 +9,7 @@ Stardew Valley Online character is bound by another player
 
 #### Usage
 
-1. Download 'rrhsv.zip' and unzip the file
+1. Download `rrhsv.zip` and unzip the file
 
 2. Go to the `conf` folder and complete the `base.conf` configuration
 
