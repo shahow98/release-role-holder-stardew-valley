@@ -1,0 +1,69 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: Run build script
+      run: build.bat
+
+    - name: Zip the artifacts
+      run: |
+        powershell Compress-Archive -Path detail.exe,release.exe,conf -DestinationPath artifacts.zip
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: artifacts.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build-artifacts
+        path: ./
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: 'v1.0.0'  # 或者使用一个动态生成的版本号
+        release_name: 'Release v1.0.0'
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./artifacts.zip
+        asset_name: artifacts.zip
+        asset_content_type: application/zip
