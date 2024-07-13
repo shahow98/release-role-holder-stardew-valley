@@ -62,8 +62,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: 'v1.0.0'  # 或者使用一个动态生成的版本号
-        release_name: 'Release v1.0.0'
+        tag_name: 'v1.0.1'
+        release_name: 'Release v1.0.1'
         draft: false
         prerelease: false
 

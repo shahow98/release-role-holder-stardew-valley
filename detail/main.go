@@ -9,6 +9,8 @@ import (
 
 func main() {
 	ReadDetailInfo()
+	fmt.Println("Press Enter to exit...")
+	fmt.Scanln()
 }
 
 func ReadDetailInfo() {

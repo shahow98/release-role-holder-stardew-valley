@@ -8,6 +8,8 @@ import (
 
 func main() {
 	ReleaseRole()
+	fmt.Println("Press Enter to exit...")
+	fmt.Scanln()
 }
 
 func ReleaseRole() {
