@@ -35,7 +35,7 @@ jobs:
 
     - name: Zip the artifacts
       run: |
-        powershell Compress-Archive -Path detail.exe,release.exe,conf -DestinationPath artifacts.zip
+        powershell Compress-Archive -Path detail.exe,release.exe,conf,README.md,README.zh_CN.md -DestinationPath artifacts.zip
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
@@ -62,8 +62,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: 'v1.0.1'
-        release_name: 'Release v1.0.1'
+        tag_name: 'v1.0.2'
+        release_name: 'Release v1.0.2'
         draft: false
         prerelease: false
 
@@ -74,5 +74,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./artifacts.zip
-        asset_name: rrhsv.zip
+        asset_name: rrhsv-1.0.2.zip
         asset_content_type: application/zip
